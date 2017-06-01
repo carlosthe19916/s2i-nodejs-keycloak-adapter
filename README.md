@@ -1,0 +1,1 @@
+# s2i-nodejs-keycloak-adapter
