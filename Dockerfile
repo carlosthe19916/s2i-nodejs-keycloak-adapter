@@ -2,12 +2,6 @@ FROM carlosthe19916/centos7-s2i-angular-cli
 
 USER root
 
-# Install Java
-RUN INSTALL_PKGS="java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
-    yum install -y --enablerepo=centosplus $INSTALL_PKGS && \
-    rpm -V $INSTALL_PKGS && \
-    yum clean all -y
-
 # Keycloak Client
 RUN mkdir -p /opt/app-root/etc/keycloak/bin/client/
 ADD kcreg.sh /opt/app-root/etc/keycloak/bin
@@ -15,5 +9,5 @@ RUN curl -L -o /opt/app-root/etc/keycloak/bin/client/keycloak-client-registratio
 
 USER 1001
 
-ADD keycloak-entrypoint.sh /opt/app-root/etc/keycloak
-ENTRYPOINT [ "/opt/app-root/etc/keycloak/keycloak-entrypoint.sh" ]
+#ADD keycloak-entrypoint.sh /opt/app-root/etc/keycloak
+#ENTRYPOINT [ "/opt/app-root/etc/keycloak/keycloak-entrypoint.sh" ]
