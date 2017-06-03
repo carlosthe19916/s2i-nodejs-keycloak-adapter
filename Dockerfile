@@ -1,5 +1,11 @@
 FROM carlosthe19916/centos7-s2i-angular-cli
 
+# Install Java
+RUN INSTALL_PKGS="java-1.8.0-openjdk java-1.8.0-openjdk-devel" && \
+    yum install -y --enablerepo=centosplus $INSTALL_PKGS && \
+    rpm -V $INSTALL_PKGS && \
+    yum clean all -y
+
 USER root
 RUN mkdir -p /opt/app-root/etc/keycloak/bin/client/
 
