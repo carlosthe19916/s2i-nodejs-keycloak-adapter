@@ -9,5 +9,5 @@ RUN curl -L -o /opt/app-root/etc/keycloak/bin/client/keycloak-client-registratio
 
 USER 1001
 
-#ADD keycloak-entrypoint.sh /opt/app-root/etc/keycloak
-#ENTRYPOINT [ "/opt/app-root/etc/keycloak/keycloak-entrypoint.sh" ]
+ADD keycloak-entrypoint.sh /opt/app-root/etc/keycloak
+ENTRYPOINT [ "/opt/app-root/etc/keycloak/keycloak-entrypoint.sh" ]

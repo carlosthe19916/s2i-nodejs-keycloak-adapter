@@ -1,11 +1,14 @@
 #!/bin/bash
 
+if [ -n "$KEYCLOAK_AUTH_SERVER_URL" ]
+then
+  # Remove last slash from keycloak
+  export KEYCLOAK_AUTH_SERVER_URL=${KEYCLOAK_AUTH_SERVER_URL%/}
+fi
+
 # Client registration
 if [ -n "$KEYCLOAK_INITIAL_ACCESS_TOKEN" ] && [ -n "$KEYCLOAK_AUTH_SERVER_URL" ] && [ -n "$KEYCLOAK_REALM" ] && [ -n "$KEYCLOAK_RESOURCE" ]
 then
-  
-  # Remove last slash from keycloak
-  export KEYCLOAK_AUTH_SERVER_URL=${KEYCLOAK_AUTH_SERVER_URL%/}
 
   echo "trying to configure keycloak-cli"
   /opt/app-root/etc/keycloak/bin/kcreg.sh config initial-token $KEYCLOAK_INITIAL_ACCESS_TOKEN --server $KEYCLOAK_AUTH_SERVER_URL --realm $KEYCLOAK_REALM
